@@ -26,7 +26,6 @@ class ArticleListFilter(admin.SimpleListFilter):
 
 
 class ArticleForm(forms.ModelForm):
-    # body = forms.CharField(widget=AdminPagedownWidget())
 
     class Meta:
         model = Article
@@ -41,18 +40,10 @@ def draft_article(modeladmin, request, queryset):
     queryset.update(status='d')
 
 
-def close_article_commentstatus(modeladmin, request, queryset):
-    queryset.update(comment_status='c')
 
 
-def open_article_commentstatus(modeladmin, request, queryset):
-    queryset.update(comment_status='o')
-
-
-makr_article_publish.short_description = '发布选中文章'
-draft_article.short_description = '选中文章设置为草稿'
-close_article_commentstatus.short_description = '关闭文章评论'
-open_article_commentstatus.short_description = '打开文章评论'
+makr_article_publish.short_description = '發布選中文章'
+draft_article.short_description = '選中文章設置為草稿'
 
 
 class ArticlelAdmin(admin.ModelAdmin):
@@ -62,23 +53,18 @@ class ArticlelAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'title',
-        'author',
         'link_to_category',
         'created_time',
-        'views',
         'status',
-        'type',
-        'article_order')
+        'type',)
     list_display_links = ('id', 'title')
     list_filter = (ArticleListFilter, 'status', 'type', 'category', 'tags')
     filter_horizontal = ('tags',)
-    exclude = ('created_time', 'last_mod_time')
+    exclude = ('created_time', 'last_mod_time', 'author')
     view_on_site = True
     actions = [
         makr_article_publish,
-        draft_article,
-        close_article_commentstatus,
-        open_article_commentstatus]
+        draft_article,]
 
     def link_to_category(self, obj):
         info = (obj.category._meta.app_label, obj.category._meta.model_name)
@@ -87,13 +73,12 @@ class ArticlelAdmin(admin.ModelAdmin):
 
     link_to_category.short_description = '分类目录'
 
-    def get_form(self, request, obj=None, **kwargs):
+    def get_form(self, request, obj, **kwargs):
         form = super(ArticlelAdmin, self).get_form(request, obj, **kwargs)
-        form.base_fields['author'].queryset = get_user_model(
-        ).objects.filter(is_superuser=True)
         return form
 
     def save_model(self, request, obj, form, change):
+        obj.author = request.user
         super(ArticlelAdmin, self).save_model(request, obj, form, change)
 
     def get_view_on_site_url(self, obj=None):
@@ -111,8 +96,8 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent_category', 'index')
-    exclude = ('slug', 'last_mod_time', 'created_time')
+    list_display = ('chinese_name', 'name', 'parent_category', 'index')
+    exclude = ('slug', 'last_mod_time', 'created_time', )
 
 
 class LinksAdmin(admin.ModelAdmin):
@@ -126,3 +111,21 @@ class SideBarAdmin(admin.ModelAdmin):
 
 class BlogSettingsAdmin(admin.ModelAdmin):
     pass
+
+
+class AboutAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'title',
+        'created_time')
+    
+    list_display_links = ('id', 'title')
+
+
+class PageAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'title',
+        'created_time')
+    
+    list_display_links = ('title', )

@@ -1,0 +1,732 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-21 15:18+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\photologue\admin.py:60
+#, python-format
+msgid ""
+"The following photo does not belong to the same site(s) as the gallery, so "
+"will never be displayed: %(photo_list)s."
+msgid_plural ""
+"The following photos do not belong to the same site(s) as the gallery, so "
+"will never be displayed: %(photo_list)s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\photologue\admin.py:72
+#, python-format
+msgid "The gallery has been successfully added to %(site)s"
+msgid_plural "The galleries have been successfully added to %(site)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\photologue\admin.py:79
+msgid "Add selected galleries to the current site"
+msgstr "添加選中相簿到這個網站"
+
+#: .\photologue\admin.py:85
+#, python-format
+msgid "The gallery has been successfully removed from %(site)s"
+msgid_plural ""
+"The selected galleries have been successfully removed from %(site)s"
+msgstr[0] "添加成功"
+msgstr[1] ""
+
+#: .\photologue\admin.py:92
+msgid "Remove selected galleries from the current site"
+msgstr "從這個網站移除選中相簿"
+
+#: .\photologue\admin.py:99
+#, python-format
+msgid ""
+"All photos in gallery %(galleries)s have been successfully added to %(site)s"
+msgid_plural ""
+"All photos in galleries %(galleries)s have been successfully added to "
+"%(site)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\photologue\admin.py:107
+msgid "Add all photos of selected galleries to the current site"
+msgstr ""
+
+#: .\photologue\admin.py:114
+#, python-format
+msgid ""
+"All photos in gallery %(galleries)s have been successfully removed from "
+"%(site)s"
+msgid_plural ""
+"All photos in galleries %(galleries)s have been successfully removed from "
+"%(site)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\photologue\admin.py:122
+msgid "Remove all photos in selected galleries from the current site"
+msgstr "移除屬於這個相簿的所有照片"
+
+#: .\photologue\admin.py:163
+#, python-format
+msgid "The photo has been successfully added to %(site)s"
+msgid_plural "The selected photos have been successfully added to %(site)s"
+msgstr[0] "添加照片成功"
+msgstr[1] "添加照片成功"
+
+#: .\photologue\admin.py:170
+msgid "Add selected photos to the current site"
+msgstr "把選中照片列入本網站"
+
+#: .\photologue\admin.py:176
+#, python-format
+msgid "The photo has been successfully removed from %(site)s"
+msgid_plural "The selected photos have been successfully removed from %(site)s"
+msgstr[0] "移除照片成功"
+msgstr[1] ""
+
+#: .\photologue\admin.py:183
+msgid "Remove selected photos from the current site"
+msgstr "移除照片"
+
+#: .\photologue\admin.py:197
+#: .\photologue\templates\admin\photologue\photo\upload_zip.html:27
+msgid "Upload a zip archive of photos"
+msgstr "上傳圖片壓縮檔"
+
+#: .\photologue\forms.py:25
+msgid "Title"
+msgstr "標題"
+
+#: .\photologue\forms.py:28
+msgid ""
+"All uploaded photos will be given a title made up of this title + a "
+"sequential number.<br>This field is required if creating a new gallery, but "
+"is optional when adding to an existing gallery - if not supplied, the photo "
+"titles will be creating from the existing gallery name."
+msgstr "所有已上傳的照片將被冠以一個由此標題 + 有序數字而組成的新標題.<br>此字段在創建新相簿時是必需的, 但是在被添加到某個已經存在的相簿時則是可選的 - 如果未填寫此字段, 照片標題將由這個已經存在的相簿標題按上述規則組合而成."
+
+#: .\photologue\forms.py:34
+msgid "Gallery"
+msgstr "相簿"
+
+#: .\photologue\forms.py:36
+msgid ""
+"Select a gallery to add these images to. Leave this empty to create a new "
+"gallery from the supplied title."
+msgstr "選擇一個圖庫以將這些圖片添加進去. 如若留空, 則以所提供的標題來創建一個新相簿."
+
+#: .\photologue\forms.py:38
+msgid "Caption"
+msgstr "說明"
+
+#: .\photologue\forms.py:40
+msgid "Caption will be added to all photos."
+msgstr "說明將會被添加到所有圖片"
+
+#: .\photologue\forms.py:41
+msgid "Description"
+msgstr "描述"
+
+#: .\photologue\forms.py:43
+msgid "A description of this Gallery. Only required for new galleries."
+msgstr "這個相簿的描述，只限新相簿"
+
+#: .\photologue\forms.py:44
+msgid "Is public"
+msgstr "是否公開此相簿"
+
+#: .\photologue\forms.py:47
+msgid ""
+"Uncheck this to make the uploaded gallery and included photographs private."
+msgstr "如果想把所有相簿以及照片設為私人請放棄勾選"
+
+#: .\photologue\forms.py:70
+msgid "A gallery with that title already exists."
+msgstr "標題重復"
+
+#: .\photologue\forms.py:80
+msgid "Select an existing gallery, or enter a title for a new gallery."
+msgstr "請選一個相簿或給新的相簿輸入新的標題"
+
+#: .\photologue\forms.py:113
+#, python-brace-format
+msgid ""
+"Ignoring file \"{filename}\" as it is in a subfolder; all images should be "
+"in the top folder of the zip."
+msgstr "忽文件\"{filename}\" 因為它存在於子目錄； 所有圖片應該存在於 zip 存檔的資料夾目錄中。"
+
+#: .\photologue\forms.py:154
+#, python-brace-format
+msgid "Could not process file \"{0}\" in the .zip archive."
+msgstr "無法處理 .zip 檔案裡的文件 \"{0}\"。"
+
+#: .\photologue\forms.py:170
+#, python-brace-format
+msgid "The photos have been added to gallery \"{0}\"."
+msgstr "照片以加入到相簿\"{0}\"."
+
+#: .\photologue\models.py:98
+msgid "Very Low"
+msgstr "非常低"
+
+#: .\photologue\models.py:99
+msgid "Low"
+msgstr "低"
+
+#: .\photologue\models.py:100
+msgid "Medium-Low"
+msgstr "中低"
+
+#: .\photologue\models.py:101
+msgid "Medium"
+msgstr "中"
+
+#: .\photologue\models.py:102
+msgid "Medium-High"
+msgstr "中高"
+
+#: .\photologue\models.py:103
+msgid "High"
+msgstr "高"
+
+#: .\photologue\models.py:104
+msgid "Very High"
+msgstr "非常高"
+
+#: .\photologue\models.py:109
+msgid "Top"
+msgstr "置頂"
+
+#: .\photologue\models.py:110
+msgid "Right"
+msgstr "右"
+
+#: .\photologue\models.py:111
+msgid "Bottom"
+msgstr "底"
+
+#: .\photologue\models.py:112
+msgid "Left"
+msgstr "左"
+
+#: .\photologue\models.py:113
+msgid "Center (Default)"
+msgstr "置中"
+
+#: .\photologue\models.py:117
+msgid "Flip left to right"
+msgstr ""
+
+#: .\photologue\models.py:118
+msgid "Flip top to bottom"
+msgstr ""
+
+#: .\photologue\models.py:119
+msgid "Rotate 90 degrees counter-clockwise"
+msgstr ""
+
+#: .\photologue\models.py:120
+msgid "Rotate 90 degrees clockwise"
+msgstr ""
+
+#: .\photologue\models.py:121
+msgid "Rotate 180 degrees"
+msgstr ""
+
+#: .\photologue\models.py:125
+msgid "Tile"
+msgstr ""
+
+#: .\photologue\models.py:126
+msgid "Scale"
+msgstr ""
+
+#: .\photologue\models.py:136
+#, python-format
+msgid ""
+"Chain multiple filters using the following pattern \"FILTER_ONE->FILTER_TWO-"
+">FILTER_THREE\". Image filters will be applied in order. The following "
+"filters are available: %s."
+msgstr ""
+
+#: .\photologue\models.py:158
+msgid "date published"
+msgstr "發表時間"
+
+#: .\photologue\models.py:160 .\photologue\models.py:513
+msgid "title"
+msgstr "標題"
+
+#: .\photologue\models.py:163
+msgid "title slug"
+msgstr "標題縮寫"
+
+#: .\photologue\models.py:166 .\photologue\models.py:519
+msgid "A \"slug\" is a unique URL-friendly title for an object."
+msgstr "友善網址"
+
+#: .\photologue\models.py:167 .\photologue\models.py:596
+msgid "description"
+msgstr "描述"
+
+#: .\photologue\models.py:169 .\photologue\models.py:524
+msgid "is public"
+msgstr "是否公開"
+
+#: .\photologue\models.py:171
+msgid "Public galleries will be displayed in the default views."
+msgstr "公開相簿會顯示在預設畫面"
+
+#: .\photologue\models.py:175 .\photologue\models.py:536
+msgid "photos"
+msgstr "照片"
+
+#: .\photologue\models.py:177 .\photologue\models.py:527
+msgid "sites"
+msgstr "網站"
+
+#: .\photologue\models.py:185
+msgid "gallery"
+msgstr "相簿"
+
+#: .\photologue\models.py:186
+msgid "galleries"
+msgstr "相簿"
+
+#: .\photologue\models.py:224
+msgid "count"
+msgstr "數量"
+
+#: .\photologue\models.py:240 .\photologue\models.py:741
+msgid "image"
+msgstr "照片"
+
+#: .\photologue\models.py:243
+msgid "date taken"
+msgstr "拍攝日期"
+
+#: .\photologue\models.py:246
+msgid "Date image was taken; is obtained from the image EXIF data."
+msgstr "拍攝日期會儲存於EXIF裡"
+
+#: .\photologue\models.py:247
+msgid "view count"
+msgstr "觀看次數"
+
+#: .\photologue\models.py:250
+msgid "crop from"
+msgstr ""
+
+#: .\photologue\models.py:259
+msgid "effect"
+msgstr ""
+
+#: .\photologue\models.py:279
+msgid "An \"admin_thumbnail\" photo size has not been defined."
+msgstr ""
+
+#: .\photologue\models.py:286
+msgid "Thumbnail"
+msgstr "大頭照"
+
+#: .\photologue\models.py:516
+msgid "slug"
+msgstr "網址縮寫"
+
+#: .\photologue\models.py:520
+msgid "caption"
+msgstr "說明"
+
+#: .\photologue\models.py:522
+msgid "date added"
+msgstr "發表時間"
+
+#: .\photologue\models.py:526
+msgid "Public photographs will be displayed in the default views."
+msgstr ""
+
+#: .\photologue\models.py:535
+msgid "photo"
+msgstr "照片"
+
+#: .\photologue\models.py:593 .\photologue\models.py:771
+msgid "name"
+msgstr "名稱"
+
+#: .\photologue\models.py:672
+msgid "rotate or flip"
+msgstr ""
+
+#: .\photologue\models.py:676 .\photologue\models.py:704
+msgid "color"
+msgstr ""
+
+#: .\photologue\models.py:678
+msgid ""
+"A factor of 0.0 gives a black and white image, a factor of 1.0 gives the "
+"original image."
+msgstr ""
+
+#: .\photologue\models.py:680
+msgid "brightness"
+msgstr ""
+
+#: .\photologue\models.py:682
+msgid ""
+"A factor of 0.0 gives a black image, a factor of 1.0 gives the original "
+"image."
+msgstr ""
+
+#: .\photologue\models.py:684
+msgid "contrast"
+msgstr ""
+
+#: .\photologue\models.py:686
+msgid ""
+"A factor of 0.0 gives a solid grey image, a factor of 1.0 gives the original "
+"image."
+msgstr ""
+
+#: .\photologue\models.py:688
+msgid "sharpness"
+msgstr ""
+
+#: .\photologue\models.py:690
+msgid ""
+"A factor of 0.0 gives a blurred image, a factor of 1.0 gives the original "
+"image."
+msgstr ""
+
+#: .\photologue\models.py:692
+msgid "filters"
+msgstr ""
+
+#: .\photologue\models.py:696
+msgid "size"
+msgstr ""
+
+#: .\photologue\models.py:698
+msgid ""
+"The height of the reflection as a percentage of the orignal image. A factor "
+"of 0.0 adds no reflection, a factor of 1.0 adds a reflection equal to the "
+"height of the orignal image."
+msgstr ""
+
+#: .\photologue\models.py:701
+msgid "strength"
+msgstr ""
+
+#: .\photologue\models.py:703
+msgid "The initial opacity of the reflection gradient."
+msgstr ""
+
+#: .\photologue\models.py:707
+msgid ""
+"The background color of the reflection gradient. Set this to match the "
+"background color of your page."
+msgstr ""
+
+#: .\photologue\models.py:711 .\photologue\models.py:815
+msgid "photo effect"
+msgstr ""
+
+#: .\photologue\models.py:712
+msgid "photo effects"
+msgstr ""
+
+#: .\photologue\models.py:743
+msgid "style"
+msgstr ""
+
+#: .\photologue\models.py:747
+msgid "opacity"
+msgstr ""
+
+#: .\photologue\models.py:749
+msgid "The opacity of the overlay."
+msgstr ""
+
+#: .\photologue\models.py:752
+msgid "watermark"
+msgstr ""
+
+#: .\photologue\models.py:753
+msgid "watermarks"
+msgstr ""
+
+#: .\photologue\models.py:775
+msgid ""
+"Photo size name should contain only letters, numbers and underscores. "
+"Examples: \"thumbnail\", \"display\", \"small\", \"main_page_widget\"."
+msgstr ""
+
+#: .\photologue\models.py:782
+msgid "width"
+msgstr ""
+
+#: .\photologue\models.py:785
+msgid ""
+"If width is set to \"0\" the image will be scaled to the supplied height."
+msgstr ""
+
+#: .\photologue\models.py:786
+msgid "height"
+msgstr ""
+
+#: .\photologue\models.py:789
+msgid ""
+"If height is set to \"0\" the image will be scaled to the supplied width"
+msgstr ""
+
+#: .\photologue\models.py:790
+msgid "quality"
+msgstr ""
+
+#: .\photologue\models.py:793
+msgid "JPEG image quality."
+msgstr ""
+
+#: .\photologue\models.py:794
+msgid "upscale images?"
+msgstr ""
+
+#: .\photologue\models.py:796
+msgid ""
+"If selected the image will be scaled up if necessary to fit the supplied "
+"dimensions. Cropped sizes will be upscaled regardless of this setting."
+msgstr ""
+
+#: .\photologue\models.py:800
+msgid "crop to fit?"
+msgstr ""
+
+#: .\photologue\models.py:802
+msgid ""
+"If selected the image will be scaled and cropped to fit the supplied "
+"dimensions."
+msgstr ""
+
+#: .\photologue\models.py:804
+msgid "pre-cache?"
+msgstr ""
+
+#: .\photologue\models.py:806
+msgid "If selected this photo size will be pre-cached as photos are added."
+msgstr ""
+
+#: .\photologue\models.py:807
+msgid "increment view count?"
+msgstr ""
+
+#: .\photologue\models.py:809
+msgid ""
+"If selected the image's \"view_count\" will be incremented when this photo "
+"size is displayed."
+msgstr ""
+
+#: .\photologue\models.py:821
+msgid "watermark image"
+msgstr ""
+
+#: .\photologue\models.py:826
+msgid "photo size"
+msgstr ""
+
+#: .\photologue\models.py:827
+msgid "photo sizes"
+msgstr ""
+
+#: .\photologue\models.py:844
+msgid "Can only crop photos if both width and height dimensions are set."
+msgstr ""
+
+#: .\photologue\templates\admin\photologue\photo\change_list.html:9
+msgid "Upload a zip archive"
+msgstr "上傳ZIP檔"
+
+#: .\photologue\templates\admin\photologue\photo\upload_zip.html:15
+msgid "Home"
+msgstr "主頁面"
+
+#: .\photologue\templates\admin\photologue\photo\upload_zip.html:19
+#: .\photologue\templates\admin\photologue\photo\upload_zip.html:53
+msgid "Upload"
+msgstr "上傳"
+
+#: .\photologue\templates\admin\photologue\photo\upload_zip.html:28
+msgid ""
+"\n"
+"\t\t<p>On this page you can upload many photos at once, as long as you have\n"
+"\t\tput them all in a zip archive. The photos can be either:</p>\n"
+"\t\t<ul>\n"
+"\t\t\t<li>Added to an existing gallery.</li>\n"
+"\t\t\t<li>Otherwise, a new gallery is created with the supplied title.</li>\n"
+"\t\t</ul>\n"
+"\t"
+msgstr "\n\t\t<p>在這個頁面，你可以上傳多張圖片的zip檔，\n\t\t上傳的圖片可以被：</p>\n\t\t<ul >\n\t\t\t<li>添加至現有相簿。</li>\n\t\t\t<li>或者，以提供的標題創建一個新相簿。</li>\n \t\t</ul>\n\t"
+
+#: .\photologue\templates\admin\photologue\photo\upload_zip.html:39
+msgid "Please correct the error below."
+msgstr "請更正以下錯誤"
+
+#: .\photologue\templates\admin\photologue\photo\upload_zip.html:39
+msgid "Please correct the errors below."
+msgstr "請更正以下錯誤"
+
+#: .\photologue\templates\photologue\gallery_archive.html:4
+#: .\photologue\templates\photologue\gallery_archive.html:10
+msgid "Latest photo galleries"
+msgstr "最新相簿"
+
+#: .\photologue\templates\photologue\gallery_archive.html:18
+#: .\photologue\templates\photologue\photo_archive.html:18
+msgid "Filter by year"
+msgstr "按年過濾"
+
+#: .\photologue\templates\photologue\gallery_archive.html:34
+#: .\photologue\templates\photologue\gallery_list.html:24
+msgid "No galleries were found"
+msgstr "未找到相簿"
+
+#: .\photologue\templates\photologue\gallery_archive_day.html:4
+#: .\photologue\templates\photologue\gallery_archive_day.html:10
+#, python-format
+msgid "Galleries for %(show_day)s"
+msgstr "%(show_day)s 的相簿"
+
+#: .\photologue\templates\photologue\gallery_archive_day.html:21
+#: .\photologue\templates\photologue\gallery_archive_month.html:34
+#: .\photologue\templates\photologue\gallery_archive_year.html:33
+msgid "No galleries were found."
+msgstr "未找到相簿"
+
+#: .\photologue\templates\photologue\gallery_archive_day.html:26
+msgid "View all galleries for month"
+msgstr "按月份瀏覽所有相簿"
+
+#: .\photologue\templates\photologue\gallery_archive_month.html:4
+#: .\photologue\templates\photologue\gallery_archive_month.html:10
+#, python-format
+msgid "Galleries for %(show_month)s"
+msgstr "%(show_month)s 的相簿"
+
+#: .\photologue\templates\photologue\gallery_archive_month.html:18
+#: .\photologue\templates\photologue\photo_archive_month.html:18
+msgid "Filter by day"
+msgstr "按日過濾"
+
+#: .\photologue\templates\photologue\gallery_archive_month.html:37
+msgid "View all galleries for year"
+msgstr "按年份瀏覽所有相簿"
+
+#: .\photologue\templates\photologue\gallery_archive_year.html:4
+#: .\photologue\templates\photologue\gallery_archive_year.html:10
+#, python-format
+msgid "Galleries for %(show_year)s"
+msgstr "%(show_year)s 的相簿"
+
+#: .\photologue\templates\photologue\gallery_archive_year.html:17
+#: .\photologue\templates\photologue\photo_archive_year.html:19
+msgid "Filter by month"
+msgstr "按月過濾"
+
+#: .\photologue\templates\photologue\gallery_archive_year.html:36
+#: .\photologue\templates\photologue\gallery_detail.html:21
+msgid "View all galleries"
+msgstr "瀏覽所有相簿"
+
+#: .\photologue\templates\photologue\gallery_detail.html:11
+#: .\photologue\templates\photologue\includes\gallery_sample.html:8
+#: .\photologue\templates\photologue\photo_detail.html:11
+msgid "Published"
+msgstr "已發布"
+
+#: .\photologue\templates\photologue\gallery_list.html:4
+#: .\photologue\templates\photologue\gallery_list.html:10
+msgid "All galleries"
+msgstr "所有相簿"
+
+#: .\photologue\templates\photologue\includes\paginator.html:9
+#: .\photologue\templates\photologue\includes\paginator.html:12
+msgid "Previous"
+msgstr "上一頁"
+
+#: .\photologue\templates\photologue\includes\paginator.html:16
+#, python-format
+msgid ""
+"\n"
+"                    page %(page_number)s of %(total_pages)s\n"
+"                    "
+msgstr "\n\t\t\t\t    第 %(page_number)s / %(total_pages)s 頁\n\t\t\t\t"
+
+#: .\photologue\templates\photologue\includes\paginator.html:23
+#: .\photologue\templates\photologue\includes\paginator.html:25
+msgid "Next"
+msgstr "下一頁"
+
+#: .\photologue\templates\photologue\photo_archive.html:4
+#: .\photologue\templates\photologue\photo_archive.html:10
+msgid "Latest photos"
+msgstr "最新照片"
+
+#: .\photologue\templates\photologue\photo_archive.html:36
+#: .\photologue\templates\photologue\photo_archive_day.html:25
+#: .\photologue\templates\photologue\photo_archive_month.html:40
+#: .\photologue\templates\photologue\photo_archive_year.html:41
+#: .\photologue\templates\photologue\photo_list.html:24
+msgid "No photos were found"
+msgstr "未找到照片"
+
+#: .\photologue\templates\photologue\photo_archive_day.html:4
+#: .\photologue\templates\photologue\photo_archive_day.html:10
+#, python-format
+msgid "Photos for %(show_day)s"
+msgstr "%(show_day)s 的照片"
+
+#: .\photologue\templates\photologue\photo_archive_day.html:28
+msgid "View all photos for month"
+msgstr "按月份瀏覽所有照片"
+
+#: .\photologue\templates\photologue\photo_archive_month.html:4
+#: .\photologue\templates\photologue\photo_archive_month.html:10
+#, python-format
+msgid "Photos for %(show_month)s"
+msgstr "%(show_month)s 的照片"
+
+#: .\photologue\templates\photologue\photo_archive_month.html:43
+msgid "View all photos for year"
+msgstr "按年份瀏覽所有照片"
+
+#: .\photologue\templates\photologue\photo_archive_year.html:4
+#: .\photologue\templates\photologue\photo_archive_year.html:11
+#, python-format
+msgid "Photos for %(show_year)s"
+msgstr "%(show_year)s 的照片"
+
+#: .\photologue\templates\photologue\photo_archive_year.html:44
+msgid "View all photos"
+msgstr "瀏覽所有照片"
+
+#: .\photologue\templates\photologue\photo_detail.html:24
+msgid "This photo is found in the following galleries"
+msgstr "此照片在下列相簿中被找"
+
+#: .\photologue\templates\photologue\photo_list.html:4
+#: .\photologue\templates\photologue\photo_list.html:10
+msgid "All photos"
+msgstr "所有照片"

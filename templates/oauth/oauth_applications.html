@@ -1,12 +1,16 @@
-<div class="widget-login">
+{% load static%}
+<div class="text-center">
     {% if apps %}
-        <small>
-            快捷登录:
-        </small>
-        {% for icon,url in apps %}
+        <h1 class="card-title ">登錄</h1>
+
+        {% for icon, url in apps %}
             <a href="{{ url }}" rel="nofollow">
-                <span class="icon-sn-{{ icon }}"></span>
+            <button class="d-flex justify-content-center py-3 bg-light rounded-pill" style="width: 24rem;">
+                <img class="google-icon" src="{% static 'icon/google.png' %}" alt="">
+                <h6 class="mt-2 mx-2">Sign in with your Account</h6>
+            </button>
             </a>
+            
         {% endfor %}
     {% endif %}
 </div>

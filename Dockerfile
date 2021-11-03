@@ -2,7 +2,7 @@ FROM python:3
 ENV PYTHONUNBUFFERED 1
 WORKDIR /code/DjangoBlog/
 RUN  apt-get install  default-libmysqlclient-dev -y && \
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
+    ln -sf /usr/share/zoneinfo/Asia/Taipei  /etc/localtime
 ADD requirements.txt requirements.txt
 RUN pip install --upgrade pip  && \
         pip install -Ur requirements.txt  && \

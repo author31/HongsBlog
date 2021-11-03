@@ -130,7 +130,7 @@ def load_articletags(article):
 @register.inclusion_tag('blog/tags/sidebar.html')
 def load_sidebar(user, linktype):
     """
-    加载侧边栏
+    加载側邊欄
     :return:
     """
     logger.info('load sidebar')
@@ -141,13 +141,11 @@ def load_sidebar(user, linktype):
     sidebar_categorys = Category.objects.all()
     extra_sidebars = SideBar.objects.filter(
         is_enable=True).order_by('sequence')
-    most_read_articles = Article.objects.filter(status='p').order_by(
-        '-views')[:blogsetting.sidebar_article_count]
+    most_read_articles = Article.objects.filter(status='p')[:blogsetting.sidebar_article_count]
     dates = Article.objects.datetimes('created_time', 'month', order='DESC')
     links = Links.objects.filter(is_enable=True).filter(
         Q(show_type=str(linktype)) | Q(show_type=LinkShowType.A))
-    commment_list = Comment.objects.filter(is_enable=True).order_by(
-        '-id')[:blogsetting.sidebar_comment_count]
+
     # 标签云 计算字体大小
     # 根据总数计算出平均值 大小为 (数目/平均值)*步长
     increment = 5
@@ -167,13 +165,8 @@ def load_sidebar(user, linktype):
         'sidebar_categorys': sidebar_categorys,
         'most_read_articles': most_read_articles,
         'article_dates': dates,
-        'sidebar_comments': commment_list,
         'user': user,
         'sidabar_links': links,
-        'show_google_adsense': blogsetting.show_google_adsense,
-        'google_adsense_codes': blogsetting.google_adsense_codes,
-        'open_site_comment': blogsetting.open_site_comment,
-        'show_gongan_code': blogsetting.show_gongan_code,
         'sidebar_tags': sidebar_tags,
         'extra_sidebars': extra_sidebars
     }
@@ -272,7 +265,7 @@ def load_nav_info():
 
 
 @register.inclusion_tag('blog/tags/article_info.html')
-def load_article_detail(article, isindex, user):
+def load_article_detail(article, isindex, user, isblog=True):
     """
     加载文章详情
     :param article:
@@ -286,7 +279,7 @@ def load_article_detail(article, isindex, user):
         'article': article,
         'isindex': isindex,
         'user': user,
-        'open_site_comment': blogsetting.open_site_comment,
+        'isblog': isblog,
     }
 
 
@@ -317,7 +310,6 @@ def gravatar_url(email, size=40):
 
 @register.filter
 def gravatar(email, size=40):
-    """获得gravatar头像"""
     url = gravatar_url(email, size)
     return mark_safe(
         '<img src="%s" height="%d" width="%d">' %

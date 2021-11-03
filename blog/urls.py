@@ -19,6 +19,7 @@ from . import views
 from haystack.forms import ModelSearchForm
 from haystack.query import SearchQuerySet
 from haystack.views import SearchView
+from photologue.views import GalleryDetailView, GalleryListView
 
 app_name = "blog"
 urlpatterns = [
@@ -26,6 +27,10 @@ urlpatterns = [
         r'',
         views.IndexView.as_view(),
         name='index'),
+    path(
+        r'page/<int:page_id>.html',
+        views.PageView.as_view(),
+        name='info_page'),
     path(
         r'page/<int:page>/',
         views.IndexView.as_view(),
@@ -75,4 +80,9 @@ urlpatterns = [
     path(
         r'refresh',
         views.refresh_memcache,
-        name='refresh')]
+        name='refresh'),
+    path(
+        r'gallery',
+        GalleryListView.as_view(),
+        name='gallery'),
+    ]

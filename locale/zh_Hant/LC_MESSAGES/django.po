@@ -1,0 +1,112 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-21 15:18+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\DjangoBlog\logentryadmin.py:27
+msgctxt "logentry_admin:action_type"
+msgid "Addition"
+msgstr ""
+
+#: .\DjangoBlog\logentryadmin.py:28
+msgctxt "logentry_admin:action_type"
+msgid "Deletion"
+msgstr ""
+
+#: .\DjangoBlog\logentryadmin.py:29
+msgctxt "logentry_admin:action_type"
+msgid "Change"
+msgstr ""
+
+#: .\DjangoBlog\logentryadmin.py:41
+msgid "Metadata"
+msgstr ""
+
+#: .\DjangoBlog\logentryadmin.py:49
+msgid "Details"
+msgstr ""
+
+#: .\DjangoBlog\logentryadmin.py:111
+msgid "object"
+msgstr ""
+
+#: .\DjangoBlog\logentryadmin.py:129
+msgid "user"
+msgstr ""
+
+#: .\DjangoBlog\logentryadmin.py:144
+msgid "action"
+msgstr ""
+
+#: .\DjangoBlog\logentryadmin.py:149
+msgid "change message"
+msgstr ""
+
+#: .\DjangoBlog\settings.py:139
+msgid "English"
+msgstr ""
+
+#: .\DjangoBlog\settings.py:140
+msgid "Traditional Chinese"
+msgstr ""
+
+#: .\accounts\admin.py:40
+msgid "Password"
+msgstr ""
+
+#: .\accounts\admin.py:42
+msgid ""
+"Raw passwords are not stored, so there is no way to see this user's "
+"password, but you can change the password using <a href=\"{}\">this form</a>."
+msgstr ""
+
+#: .\blog\admin.py:12
+msgid "作者"
+msgstr ""
+
+#: .\blog\models.py:304
+msgid "只能有一個配置"
+msgstr ""
+
+#: .\oauth\models.py:61
+msgid "已经存在"
+msgstr ""
+
+#: .\photocustom\admin.py:15
+msgid "標題"
+msgstr ""
+
+#: .\photocustom\admin.py:16
+msgid "上傳日期"
+msgstr ""
+
+#: .\photocustom\admin.py:17
+msgid "描述"
+msgstr ""
+
+#: .\photocustom\admin.py:18
+msgid "公開"
+msgstr ""
+
+#: .\photocustom\admin.py:19
+msgid "圖片"
+msgstr ""
+
+#: .\photocustom\admin.py:22
+msgid "是否公開相簿"
+msgstr ""

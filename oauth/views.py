@@ -72,20 +72,16 @@ def authorize(request):
         return HttpResponseRedirect(manager.get_authorization_url(nexturl))
     user = manager.get_oauth_userinfo()
     if user:
-        if not user.nikename or not user.nikename.strip():
+        if not user.nickname or not user.nickname.strip():
             import datetime
-            user.nikename = "djangoblog" + datetime.datetime.now().strftime('%y%m%d%I%M%S')
+            user.nickname = user.email.split("@")[0]
         try:
             temp = OAuthUser.objects.get(type=type, openid=user.openid)
-            temp.picture = user.picture
             temp.matedata = user.matedata
-            temp.nikename = user.nikename
+            temp.nickname = user.nickname
             user = temp
         except ObjectDoesNotExist:
             pass
-        # facebook的token过长
-        if type == 'facebook':
-            user.token = ''
         if user.email:
             with transaction.atomic():
                 author = None
@@ -98,9 +94,9 @@ def authorize(request):
                     author = result[0]
                     if result[1]:
                         try:
-                            get_user_model().objects.get(username=user.nikename)
+                            get_user_model().objects.get(username=user.nickname)
                         except ObjectDoesNotExist:
-                            author.username = user.nikename
+                            author.username = user.nickname
                         else:
                             author.username = "djangoblog" + datetime.datetime.now().strftime('%y%m%d%I%M%S')
                         author.source = 'authorize'
@@ -140,7 +136,7 @@ def emailconfirm(request, id, sign):
             author = result[0]
             if result[1]:
                 author.source = 'emailconfirm'
-                author.username = oauthuser.nikename.strip() if oauthuser.nikename.strip(
+                author.username = oauthuser.nickname.strip() if oauthuser.nickname.strip(
                 ) else "djangoblog" + datetime.datetime.now().strftime('%y%m%d%I%M%S')
                 author.save()
         oauthuser.author = author
@@ -193,8 +189,6 @@ class RequireEmailView(FormView):
     def get_context_data(self, **kwargs):
         oauthid = self.kwargs['oauthid']
         oauthuser = get_object_or_404(OAuthUser, pk=oauthid)
-        if oauthuser.picture:
-            kwargs['picture'] = oauthuser.picture
         return super(RequireEmailView, self).get_context_data(**kwargs)
 
     def form_valid(self, form):

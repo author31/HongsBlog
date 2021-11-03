@@ -13,6 +13,9 @@
 @time: 2018/1/7 上午2:21
 """
 from django.contrib.admin import AdminSite
+from assignment.admin import AssignmentAdmin, StudentAdmin
+from assignment.models import Assignment, StudentAssignment
+from photologue.models import Gallery
 from DjangoBlog.utils import get_current_site
 from django.contrib.sites.admin import SiteAdmin
 from django.contrib.admin.models import LogEntry
@@ -20,11 +23,15 @@ from django.contrib.sites.models import Site
 from DjangoBlog.logentryadmin import LogEntryAdmin
 from blog.admin import *
 from accounts.admin import *
+from blog.models import About, Page
 from oauth.admin import *
 from servermanager.admin import *
 from comments.admin import *
 from owntracks.admin import *
-
+from photologue.models import Gallery, Photo
+from photologue.admin import PhotoAdmin, GalleryAdmin
+from videos.admin import VideoAdmin
+from videos.models import VideoMaterial
 
 class DjangoBlogAdminSite(AdminSite):
     site_header = 'DjangoBlog administration'
@@ -55,19 +62,15 @@ admin_site.register(Tag, TagAdmin)
 admin_site.register(Links, LinksAdmin)
 admin_site.register(SideBar, SideBarAdmin)
 admin_site.register(BlogSettings, BlogSettingsAdmin)
-
-admin_site.register(commands, CommandsAdmin)
-admin_site.register(EmailSendLog, EmailSendLogAdmin)
-
+admin_site.register(Page, PageAdmin)
+admin_site.register(Photo, PhotoAdmin)
+admin_site.register(Gallery, GalleryAdmin)
 admin_site.register(BlogUser, BlogUserAdmin)
-
-admin_site.register(Comment, CommentAdmin)
+admin_site.register(Assignment, AssignmentAdmin)
+admin_site.register(StudentAssignment, StudentAdmin)
+admin_site.register(VideoMaterial, VideoAdmin)
 
 admin_site.register(OAuthUser, OAuthUserAdmin)
 admin_site.register(OAuthConfig, OAuthConfigAdmin)
 
-admin_site.register(OwnTrackLog, OwnTrackLogsAdmin)
 
-admin_site.register(Site, SiteAdmin)
-
-admin_site.register(LogEntry, LogEntryAdmin)

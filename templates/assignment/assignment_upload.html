@@ -1,0 +1,38 @@
+{%extends 'share_layout/base.html'%}
+
+{% block content%}
+    <div class="">
+        <h1 class="pb-4">作業資訊</h1>
+        <div class="row">
+            <div class="col col-md-auto">
+                {% if not is_uploaded %}
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <table class="p-10">
+                            {{ form.as_table }}
+                        </table>    
+                        <button type="submit" class="mt-4">上傳</button>
+                    </form> 
+                {% else %}
+                    <div class="mb-4">
+                        <p>{{data.content}}</p>
+                    </div>
+                    <div class="">
+                        <button class="btn btn-primary mr-2">
+                            <a href="{% url 'assignment:assignment-update' pk=assignment_id%}" style="text-decoration: none; color: inherit;">
+                                修改
+                            </a>
+                        </button>
+                        <button class="btn btn-danger">
+                            <a href="{% url 'assignment:assignment-delete' pk=assignment_id%}" style="text-decoration: none; color: inherit;">
+                                刪除
+                            </a>
+                        </button>
+                    </div>
+
+                    
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -9,17 +9,16 @@ logger = logging.getLogger(__name__)
 
 
 class OAuthUserAdmin(admin.ModelAdmin):
-    search_fields = ('nikename', 'email')
+    search_fields = ('nickname', 'email')
     list_per_page = 20
     list_display = (
         'id',
-        'nikename',
+        'nickname',
         'link_to_usermodel',
-        'show_user_image',
         'type',
         'email',
     )
-    list_display_links = ('id', 'nikename')
+    list_display_links = ('id', 'nickname')
     list_filter = ('author', 'type',)
     readonly_fields = []
 
@@ -39,14 +38,8 @@ class OAuthUserAdmin(admin.ModelAdmin):
                 u'<a href="%s">%s</a>' %
                 (link, obj.author.nickname if obj.author.nickname else obj.author.email))
 
-    def show_user_image(self, obj):
-        img = obj.picture
-        return format_html(
-            u'<img src="%s" style="width:50px;height:50px"></img>' %
-            (img))
 
     link_to_usermodel.short_description = '用户'
-    show_user_image.short_description = '用户头像'
 
 
 class OAuthConfigAdmin(admin.ModelAdmin):

@@ -1,0 +1,9 @@
+.google-icon{
+    object-fit: contain;
+    max-height: 2rem;
+    max-width: 2rem;
+}
+
+a:hover {
+    text-decoration: none;
+}

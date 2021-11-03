@@ -1,0 +1,16 @@
+{% extends 'share_layout/base.html'%}
+
+{% block content %}
+    <h1>確定刪除?</h1>
+
+    <div class="d-flex">
+        <form action="" method="POST" class="mt-4">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="是的">
+        </form>
+        <button class="btn btn-secondary mt-4 ml-2">
+            <a href="/assignment" style="color: inherit; text-decoration: none;">取消</a>
+        </button>
+    </div>
+    
+{% endblock %}

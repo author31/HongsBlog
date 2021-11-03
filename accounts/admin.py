@@ -60,7 +60,6 @@ class BlogUserAdmin(UserAdmin):
     add_form = BlogUserCreationForm
     list_display = (
         'id',
-        'nickname',
         'username',
         'email',
         'last_login',

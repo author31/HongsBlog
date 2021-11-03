@@ -1,0 +1,25 @@
+{%extends 'share_layout/base.html'%}
+
+{% block content%}
+    <div class="">
+        <div class="row gx-1">
+        <div class="col">
+        <div class="border bg-light">
+                <video class="mx-auto" width="720" height="480" controls predload>
+                    <source src="{{videos.video_file.url}}" type="video/mp4">
+                </video>
+        </div>
+        </div>
+        <div class="col">
+            <div class="p-3 border bg-light">
+                <div class="">
+                    <h5 class="h5 font-weight-bold">{{videos.title}}</h5>
+                    <p class="mt-4">{{videos.description}}</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}
+

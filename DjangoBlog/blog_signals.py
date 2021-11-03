@@ -70,10 +70,6 @@ def oauth_user_login_signal_handler(sender, **kwargs):
     id = kwargs['id']
     oauthuser = OAuthUser.objects.get(id=id)
     site = get_current_site().domain
-    if oauthuser.picture and not oauthuser.picture.find(site) >= 0:
-        from DjangoBlog.utils import save_user_avatar
-        oauthuser.picture = save_user_avatar(oauthuser.picture)
-        oauthuser.save()
 
     delete_sidebar_cache(oauthuser.author.username)
 
@@ -97,7 +93,6 @@ def model_post_save_callback(
         if not settings.TESTING and not is_update_views:
             try:
                 notify_url = instance.get_full_url()
-                SpiderNotify.baidu_notify([notify_url])
             except Exception as ex:
                 logger.error("notify sipder", ex)
         if not is_update_views:

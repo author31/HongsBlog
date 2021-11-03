@@ -26,13 +26,13 @@ class Command(BaseCommand):
             picture__istartswith='https://resource.lylinux.net').all()
         self.stdout.write('开始同步{count}个用户头像'.format(count=len(users)))
         for u in users:
-            self.stdout.write('开始同步:{id}'.format(id=u.nikename))
+            self.stdout.write('开始同步:{id}'.format(id=u.nickname))
             url = u.picture
             url = save_user_avatar(url)
             if url:
                 self.stdout.write(
                     '结束同步:{id}.url:{url}'.format(
-                        id=u.nikename, url=url))
+                        id=u.nickname, url=url))
                 u.picture = url
                 u.save()
         self.stdout.write('结束同步')

@@ -8,8 +8,8 @@ from django.utils.timezone import now
 
 class Comment(models.Model):
     body = models.TextField('正文', max_length=300)
-    created_time = models.DateTimeField('创建时间', default=now)
-    last_mod_time = models.DateTimeField('修改时间', default=now)
+    created_time = models.DateTimeField('新增時間', default=now)
+    last_mod_time = models.DateTimeField('修改時間', default=now)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         verbose_name='作者',

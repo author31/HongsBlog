@@ -25,4 +25,4 @@ HAYSTACK_CONNECTIONS = {
 ```shell script
 ./manage.py build_index
 ```
-这将会在你的es中创建两个索引，分别是`blog`和`performance`，其中`blog`索引就是搜索所使用的，而`performance`会记录每个请求的响应时间，以供将来优化使用。
+这将会在你的es中创建两个索引，分别是`blog`和`performance`，其中`blog`索引就是搜索所使用的，而`performance`会记录每个请求的响应時間，以供将来优化使用。

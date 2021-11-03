@@ -41,6 +41,11 @@
 		$( this ).parents( '.menu-item, .page_item' ).toggleClass( 'focus' );
 	} );
 
+	table = document.getElementsByTagName('table')
+	console.log(table)
+	table[0].className +=' table';
+
+
   if ( 'ontouchstart' in window ) {
     $('body').on( 'touchstart.twentytwelve',  '.menu-item-has-children > a, .page_item_has_children > a', function( e ) {
       var el = $( this ).parent( 'li' );

@@ -120,6 +120,12 @@ small {
     font-size: smaller;
 }
 
+.google-icon{
+    object-fit: contain;
+    max-height: 2rem;
+    max-width: 2rem;
+}
+
 img {
     border: 0;
     -ms-interpolation-mode: bicubic;
@@ -164,7 +170,7 @@ img {
 article.format-quote footer.entry-meta,
 article.format-link footer.entry-meta,
 article.format-status footer.entry-meta {
-    font-size: 11px;
+    font-size: 15px;
     font-size: 0.785714286rem;
     line-height: 2.181818182;
 }
@@ -205,7 +211,7 @@ input[type="color"] {
 }
 
 /* Buttons */
-.menu-toggle,
+/* .menu-toggle,
 input[type="submit"],
 input[type="button"],
 input[type="reset"],
@@ -228,7 +234,7 @@ article.post-password-required input[type=submit],
     border: 1px solid #d2d2d2;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(64, 64, 64, 0.1);
-}
+} */
 
 .menu-toggle,
 button,
@@ -243,7 +249,7 @@ input[disabled] {
     cursor: default;
 }
 
-.menu-toggle:hover,
+/* .menu-toggle:hover,
 .menu-toggle:focus,
 button:hover,
 input[type="submit"]:hover,
@@ -258,16 +264,16 @@ article.post-password-required input[type=submit]:hover {
     background-image: -webkit-linear-gradient(top, #f9f9f9, #ebebeb);
     background-image: -o-linear-gradient(top, #f9f9f9, #ebebeb);
     background-image: linear-gradient(to bottom, #f9f9f9, #ebebeb);
-}
+} */
 
-.menu-toggle:active,
+/* .menu-toggle:active,
 .menu-toggle.toggled-on,
 button:active,
 input[type="submit"]:active,
 input[type="button"]:active,
 input[type="reset"]:active {
     color: #757575;
-    background-color: #e1e1e1;
+    background-color: #000000;
     background-repeat: repeat-x;
     background-image: -moz-linear-gradient(top, #ebebeb, #e1e1e1);
     background-image: -ms-linear-gradient(top, #ebebeb, #e1e1e1);
@@ -276,7 +282,7 @@ input[type="reset"]:active {
     background-image: linear-gradient(to bottom, #ebebeb, #e1e1e1);
     box-shadow: inset 0 0 8px 2px #c6c6c6, 0 1px 0 0 #f4f4f4;
     border-color: transparent;
-}
+} */
 
 .bypostauthor cite span {
     color: #fff;
@@ -313,9 +319,6 @@ img.wp-post-image {
 embed,
 iframe,
 object,
-video {
-    max-width: 100%;
-}
 
 .entry-content .twitter-tweet-rendered {
     max-width: 100% !important; /* Override the Twitter embed fixed width */
@@ -481,15 +484,15 @@ img.wp-smiley,
 
 /* Body, links, basics */
 html {
-    font-size: 87.5%;
+    font-size: 100%;
 }
 
 body {
-    font-size: 14px;
+    font-size: 15xpx;
     font-size: 1rem;
     font-family: Helvetica, Arial, sans-serif;
     text-rendering: optimizeLegibility;
-    color: #444;
+    color: rgb(0, 0, 0);
 }
 
 body.custom-font-enabled {
@@ -498,7 +501,6 @@ body.custom-font-enabled {
 
 a {
     outline: none;
-    color: #21759b;
 }
 
 a:hover {
@@ -612,7 +614,7 @@ a:hover {
 }
 
 .main-navigation a {
-    color: #5e5e5e;
+    color: #ffffff;
 }
 
 .main-navigation a:hover,
@@ -1724,8 +1726,6 @@ img#wpstats {
 
     .main-navigation ul.nav-menu,
     .main-navigation div.nav-menu > ul {
-        border-bottom: 1px solid #ededed;
-        border-top: 1px solid #ededed;
         display: inline-block !important;
         text-align: left;
         width: 100%;
@@ -1744,10 +1744,11 @@ img#wpstats {
 
     .main-navigation li a {
         border-bottom: 0;
-        color: #6a6a6a;
+        color: #fff4f4;
         line-height: 3.692307692;
         text-transform: uppercase;
         white-space: nowrap;
+        font-size: 16px;
     }
 
     .main-navigation li a:hover,
@@ -1789,10 +1790,10 @@ img#wpstats {
     }
 
     .main-navigation li ul li a {
-        background: #efefef;
+        background: #007aff;
         border-bottom: 1px solid #ededed;
         display: block;
-        font-size: 11px;
+        font-size: 16px;
         font-size: 0.785714286rem;
         line-height: 2.181818182;
         padding: 8px 10px;
@@ -1884,7 +1885,7 @@ img#wpstats {
 /* Minimum width of 960 pixels. */
 @media screen and (min-width: 960px) {
     body {
-        background-color: #e6e6e6;
+        background-color: #fafafa;
     }
 
     body .site {
@@ -2279,10 +2280,6 @@ div {
     left: -26px;
     font-size: 10px;
     border-radius: 100%;
-}
-
-/* child comment */
-.commentlist li ul {
 }
 
 .commentlist li li {

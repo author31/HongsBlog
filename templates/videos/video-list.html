@@ -1,0 +1,24 @@
+{%extends 'share_layout/base.html'%}
+
+{% block content%}
+        <table class="table">
+            <tr>
+                <th>標題</th>
+                <th>期限</th>
+            </tr>
+            {% for vid in videos %}
+            <tr>
+                <td>
+                    <a href="{{ vid.get_absolute_url }}">{{vid.title}}</a>
+                </td>
+                <td>
+                    {{vid.deadline}}                    
+                </td>
+            </tr>
+                
+            {% endfor %}
+        </table>
+       
+    
+{% endblock %}
+

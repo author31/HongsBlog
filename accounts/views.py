@@ -95,7 +95,7 @@ class LoginView(FormView):
     template_name = 'account/login.html'
     success_url = '/'
     redirect_field_name = REDIRECT_FIELD_NAME
-    login_ttl = 2626560  # 一个月的时间
+    login_ttl = 2626560  # 一个月的時間
 
     @method_decorator(sensitive_post_parameters('password'))
     @method_decorator(csrf_protect)

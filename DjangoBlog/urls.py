@@ -40,6 +40,8 @@ urlpatterns = [
     url(r'^admin/', admin_site.urls),
     url(r'', include('blog.urls', namespace='blog')),
     url(r'mdeditor/', include('mdeditor.urls')),
+    url(r'^photologue/', include('photologue.urls', namespace='photologue')),
+    url(r'^photocustom/', include('photologue.urls', namespace='photocustom')),
     url(r'', include('comments.urls', namespace='comment')),
     url(r'', include('accounts.urls', namespace='account')),
     url(r'', include('oauth.urls', namespace='oauth')),
@@ -49,8 +51,11 @@ urlpatterns = [
     url(r'^rss/$', DjangoBlogFeed()),
     url(r'^search', include('haystack.urls'), name='search'),
     url(r'', include('servermanager.urls', namespace='servermanager')),
-    url(r'', include('owntracks.urls', namespace='owntracks'))
+    url(r'', include('owntracks.urls', namespace='owntracks')),
+    url(r'^assignment/', include('assignment.urls'), name='assignment'),
+    url(r'^videos/', include('videos.urls'), name='videos'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
+

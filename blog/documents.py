@@ -159,7 +159,6 @@ class ArticleDocument(Document):
 
     pub_time = Date()
     status = Text()
-    comment_status = Text()
     type = Text()
     views = Integer()
     article_order = Integer()
@@ -196,7 +195,7 @@ class ArticleDocumentManager():
                 body=article.body,
                 title=article.title,
                 author={
-                    'nikename': article.author.username,
+                    'nickname': article.author.username,
                     'id': article.author.id},
                 category={
                     'name': article.category.name,
@@ -207,9 +206,7 @@ class ArticleDocumentManager():
                         'id': t.id} for t in article.tags.all()],
                 pub_time=article.pub_time,
                 status=article.status,
-                comment_status=article.comment_status,
                 type=article.type,
-                views=article.views,
                 article_order=article.article_order) for article in articles]
 
     def rebuild(self, articles=None):

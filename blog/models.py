@@ -11,36 +11,32 @@ from DjangoBlog.utils import get_current_site
 from DjangoBlog.utils import cache_decorator, cache
 from django.utils.timezone import now
 from mdeditor.fields import MDTextField
+from accounts.models import BlogUser
+from photologue.models import Gallery
 
 logger = logging.getLogger(__name__)
 
 
 class LinkShowType(models.TextChoices):
-    I = ('i', '首页')
-    L = ('l', '列表页')
-    P = ('p', '文章页面')
+    I = ('i', '首頁')
+    L = ('l', '列表頁')
+    P = ('p', '文章頁面')
     A = ('a', '全站')
-    S = ('s', '友情链接页面')
+    S = ('s', '友善網站頁面')
 
 
 class BaseModel(models.Model):
     id = models.AutoField(primary_key=True)
-    created_time = models.DateTimeField('创建时间', default=now)
-    last_mod_time = models.DateTimeField('修改时间', default=now)
+    created_time = models.DateTimeField('新增時間', default=now)
+    last_mod_time = models.DateTimeField('修改時間', default=now)
 
     def save(self, *args, **kwargs):
-        is_update_views = isinstance(
-            self,
-            Article) and 'update_fields' in kwargs and kwargs['update_fields'] == ['views']
-        if is_update_views:
-            Article.objects.filter(pk=self.pk).update(views=self.views)
-        else:
-            if 'slug' in self.__dict__:
-                slug = getattr(
-                    self, 'title') if 'title' in self.__dict__ else getattr(
-                    self, 'name')
-                setattr(self, 'slug', slugify(slug))
-            super().save(*args, **kwargs)
+        if 'slug' in self.__dict__:
+            slug = getattr(
+                self, 'title') if 'title' in self.__dict__ else getattr(
+                self, 'name')
+            setattr(self, 'slug', slugify(slug))
+        super().save(*args, **kwargs)
 
     def get_full_url(self):
         site = get_current_site().domain
@@ -60,48 +56,36 @@ class Article(BaseModel):
     """文章"""
     STATUS_CHOICES = (
         ('d', '草稿'),
-        ('p', '发表'),
-    )
-    COMMENT_STATUS = (
-        ('o', '打开'),
-        ('c', '关闭'),
+        ('p', '發表'),
     )
     TYPE = (
         ('a', '文章'),
-        ('p', '页面'),
+        ('p', '頁面'),
     )
-    title = models.CharField('标题', max_length=200, unique=True)
-    body = MDTextField('正文')
+    title = models.CharField('標題', max_length=200, unique=True)
+    body = MDTextField('內容')
     pub_time = models.DateTimeField(
-        '发布时间', blank=False, null=False, default=now)
+        '發表時間', blank=False, null=False, default=now)
     status = models.CharField(
-        '文章状态',
+        '文章狀態',
         max_length=1,
         choices=STATUS_CHOICES,
         default='p')
-    comment_status = models.CharField(
-        '评论状态',
-        max_length=1,
-        choices=COMMENT_STATUS,
-        default='o')
-    type = models.CharField('类型', max_length=1, choices=TYPE, default='a')
-    views = models.PositiveIntegerField('浏览量', default=0)
+    type = models.CharField('類型', max_length=1, choices=TYPE, default='a')
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        BlogUser,
         verbose_name='作者',
         blank=False,
         null=False,
         on_delete=models.CASCADE)
-    article_order = models.IntegerField(
-        '排序,数字越大越靠前', blank=False, null=False, default=0)
     category = models.ForeignKey(
         'Category',
-        verbose_name='分类',
+        verbose_name='分類',
         on_delete=models.CASCADE,
         blank=False,
         null=False)
-    tags = models.ManyToManyField('Tag', verbose_name='标签集合', blank=True)
-
+    gallery = models.ForeignKey(Gallery, blank=True, null=True, verbose_name='相簿', on_delete=models.CASCADE)
+    tags = models.ManyToManyField('Tag', verbose_name='標籤集合', blank=True)
     def body_to_string(self):
         return self.body
 
@@ -109,7 +93,7 @@ class Article(BaseModel):
         return self.title
 
     class Meta:
-        ordering = ['-article_order', '-pub_time']
+        ordering = ['-pub_time']
         verbose_name = "文章"
         verbose_name_plural = verbose_name
         get_latest_by = 'id'
@@ -132,22 +116,6 @@ class Article(BaseModel):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-    def viewed(self):
-        self.views += 1
-        self.save(update_fields=['views'])
-
-    def comment_list(self):
-        cache_key = 'article_comments_{id}'.format(id=self.id)
-        value = cache.get(cache_key)
-        if value:
-            logger.info('get article comments:{id}'.format(id=self.id))
-            return value
-        else:
-            comments = self.comment_set.filter(is_enable=True)
-            cache.set(cache_key, comments, 60 * 100)
-            logger.info('set article comments:{id}'.format(id=self.id))
-            return comments
-
     def get_admin_url(self):
         info = (self._meta.app_label, self._meta.model_name)
         return reverse('admin:%s_%s_change' % info, args=(self.pk,))
@@ -165,20 +133,20 @@ class Article(BaseModel):
 
 
 class Category(BaseModel):
-    """文章分类"""
-    name = models.CharField('分类名', max_length=30, unique=True)
+    name = models.CharField('分類名稱', max_length=30, unique=True)
+    chinese_name = models.CharField('中文名稱', max_length=30, unique=True, null=True)
     parent_category = models.ForeignKey(
         'self',
-        verbose_name="父级分类",
+        verbose_name="上級分類",
         blank=True,
         null=True,
         on_delete=models.CASCADE)
     slug = models.SlugField(default='no-slug', max_length=60, blank=True)
-    index = models.IntegerField(default=0, verbose_name="权重排序-越大越靠前")
+    index = models.IntegerField(default=0, verbose_name="權重排序-越大越靠前")
 
     class Meta:
         ordering = ['-index']
-        verbose_name = "分类"
+        verbose_name = "分類"
         verbose_name_plural = verbose_name
 
     def get_absolute_url(self):
@@ -191,10 +159,6 @@ class Category(BaseModel):
 
     @cache_decorator(60 * 60 * 10)
     def get_category_tree(self):
-        """
-        递归获得分类目录的父级
-        :return:
-        """
         categorys = []
 
         def parse(category):
@@ -229,7 +193,7 @@ class Category(BaseModel):
 
 class Tag(BaseModel):
     """文章标签"""
-    name = models.CharField('标签名', max_length=30, unique=True)
+    name = models.CharField('標籤', max_length=30, unique=True)
     slug = models.SlugField(default='no-slug', max_length=60, blank=True)
 
     def __str__(self):
@@ -244,29 +208,28 @@ class Tag(BaseModel):
 
     class Meta:
         ordering = ['name']
-        verbose_name = "标签"
+        verbose_name = "標籤"
         verbose_name_plural = verbose_name
 
 
 class Links(models.Model):
-    """友情链接"""
 
-    name = models.CharField('链接名称', max_length=30, unique=True)
-    link = models.URLField('链接地址')
+    name = models.CharField('名稱', max_length=30, unique=True)
+    link = models.URLField('網址')
     sequence = models.IntegerField('排序', unique=True)
     is_enable = models.BooleanField(
-        '是否显示', default=True, blank=False, null=False)
+        '是否顯示', default=True, blank=False, null=False)
     show_type = models.CharField(
-        '显示类型',
+        '顯示類型',
         max_length=1,
         choices=LinkShowType.choices,
         default=LinkShowType.I)
-    created_time = models.DateTimeField('创建时间', default=now)
-    last_mod_time = models.DateTimeField('修改时间', default=now)
+    created_time = models.DateTimeField('新增時間', default=now)
+    last_mod_time = models.DateTimeField('修改時間', default=now)
 
     class Meta:
         ordering = ['sequence']
-        verbose_name = '友情链接'
+        verbose_name = '友善網址'
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -274,17 +237,17 @@ class Links(models.Model):
 
 
 class SideBar(models.Model):
-    """侧边栏,可以展示一些html内容"""
-    name = models.CharField('标题', max_length=100)
+    """側邊欄,可以展示一些html内容"""
+    name = models.CharField('標題', max_length=100)
     content = models.TextField("内容")
     sequence = models.IntegerField('排序', unique=True)
-    is_enable = models.BooleanField('是否启用', default=True)
-    created_time = models.DateTimeField('创建时间', default=now)
-    last_mod_time = models.DateTimeField('修改时间', default=now)
+    is_enable = models.BooleanField('是否啟用', default=True)
+    created_time = models.DateTimeField('新增時間', default=now)
+    last_mod_time = models.DateTimeField('修改時間', default=now)
 
     class Meta:
         ordering = ['sequence']
-        verbose_name = '侧边栏'
+        verbose_name = '側邊欄'
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -294,52 +257,31 @@ class SideBar(models.Model):
 class BlogSettings(models.Model):
     '''站点设置 '''
     sitename = models.CharField(
-        "网站名称",
+        "網站名稱",
         max_length=200,
         null=False,
         blank=False,
         default='')
     site_description = models.TextField(
-        "网站描述",
+        "描述",
         max_length=1000,
         null=False,
         blank=False,
         default='')
     site_seo_description = models.TextField(
-        "网站SEO描述", max_length=1000, null=False, blank=False, default='')
+        "SEO描述", max_length=1000, null=False, blank=False, default='')
     site_keywords = models.TextField(
-        "网站关键字",
+        "關鍵字",
         max_length=1000,
         null=False,
         blank=False,
         default='')
-    article_sub_length = models.IntegerField("文章摘要长度", default=300)
-    sidebar_article_count = models.IntegerField("侧边栏文章数目", default=10)
-    sidebar_comment_count = models.IntegerField("侧边栏评论数目", default=5)
-    show_google_adsense = models.BooleanField('是否显示谷歌广告', default=False)
+    article_sub_length = models.IntegerField("文章摘要長度", default=300)
+    sidebar_article_count = models.IntegerField("側邊欄文章数目", default=10)
+    show_google_adsense = models.BooleanField('是否顯示廣告', default=False)
     google_adsense_codes = models.TextField(
-        '广告内容', max_length=2000, null=True, blank=True, default='')
-    open_site_comment = models.BooleanField('是否打开网站评论功能', default=True)
-    beiancode = models.CharField(
-        '备案号',
-        max_length=2000,
-        null=True,
-        blank=True,
-        default='')
-    analyticscode = models.TextField(
-        "网站统计代码",
-        max_length=1000,
-        null=False,
-        blank=False,
-        default='')
-    show_gongan_code = models.BooleanField(
-        '是否显示公安备案号', default=False, null=False)
-    gongan_beiancode = models.TextField(
-        '公安备案号',
-        max_length=2000,
-        null=True,
-        blank=True,
-        default='')
+        '廣告內容', max_length=2000, null=True, blank=True, default='')
+
     resource_path = models.CharField(
         "静态文件保存地址",
         max_length=300,
@@ -347,7 +289,7 @@ class BlogSettings(models.Model):
         default='/var/www/resource/')
 
     class Meta:
-        verbose_name = '网站配置'
+        verbose_name = '網站配置'
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -355,9 +297,43 @@ class BlogSettings(models.Model):
 
     def clean(self):
         if BlogSettings.objects.exclude(id=self.id).count():
-            raise ValidationError(_('只能有一个配置'))
+            raise ValidationError(_('只能有一個配置'))
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         from DjangoBlog.utils import cache
         cache.clear()
+
+
+class About(BaseModel):
+    title = models.CharField('標題', max_length=200, unique=True, null=True)
+    body = MDTextField('內容')
+    pub_time = models.DateTimeField(
+        '發表時間', blank=False, null=False, default=now)
+    class Meta:
+        verbose_name = "自我介紹"
+        verbose_name_plural = verbose_name
+
+
+class Page(BaseModel):
+    title = models.CharField('標題', max_length=200, unique=True, null=True)
+    pub_time = models.DateTimeField('發表時間', blank=False, null=False, default=now)
+    gallery = models.ForeignKey(Gallery, blank=True, null=True, verbose_name='相簿', on_delete=models.CASCADE)
+    parent_page = models.ForeignKey(
+        'self',
+        verbose_name="上級分頁",
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE)
+    body = MDTextField('內容', null=True, blank=True)
+    class Meta:
+        verbose_name = "資訊頁面"
+        verbose_name_plural = verbose_name  
+    
+    def __str__(self):
+        return self.title
+
+    
+    def get_absolute_url(self):
+        return reverse(
+            'blog:info_page', kwargs={'page_id': self.id})

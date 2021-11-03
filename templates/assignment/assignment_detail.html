@@ -1,0 +1,36 @@
+{%extends 'share_layout/base.html'%}
+
+{% block content%}
+    <div class="">
+        <div class="d-flex">
+            <h1 class="pb-4 pl-2">作業資訊</h1>
+            <h1 class="pb-4 pl-4">
+                
+                {% if not is_uploaded and not is_deadline %}
+                    <a href="{% url 'assignment:assignment-upload' pk=assignment.id %}">交作業</a>
+                {% elif is_uploaded %}
+                    <a href="{% url 'assignment:assignment-upload' pk=assignment.id %}">我的作業</a>
+                {% else %}
+                    <h1 class="text-danger">繳交期限已過</h1>
+                {% endif %}
+                
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <tr>
+                        <th class="w-25">作業</th>
+                        <th class="w-25">期限</th>
+                        <th class="">內容</th>
+                    </tr>
+                    <tr>
+                        <td>{{assignment.name}}</td>
+                        <td>{{assignment.deadline}}</td>
+                        <td>{{assignment.description}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

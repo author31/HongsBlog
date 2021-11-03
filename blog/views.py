@@ -1,10 +1,12 @@
 import uuid
+from django.db.models import query
 
 from django.shortcuts import render
 
 # Create your views here.
 import os
 import datetime
+from django.views.generic.base import TemplateView, View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.conf import settings
@@ -14,8 +16,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from DjangoBlog.utils import cache, get_sha256, get_blog_setting
 from django.shortcuts import get_object_or_404
-from blog.models import Article, Category, Tag, Links, LinkShowType
-from comments.forms import CommentForm
+from blog.models import *
 import logging
 
 logger = logging.getLogger(__name__)
@@ -103,6 +104,7 @@ class IndexView(ArticleListView):
 
 
 class ArticleDetailView(DetailView):
+
     '''
     文章详情页面
     '''
@@ -113,41 +115,48 @@ class ArticleDetailView(DetailView):
 
     def get_object(self, queryset=None):
         obj = super(ArticleDetailView, self).get_object()
-        obj.viewed()
         self.object = obj
         return obj
 
     def get_context_data(self, **kwargs):
         articleid = int(self.kwargs[self.pk_url_kwarg])
-        comment_form = CommentForm()
         user = self.request.user
-        # 如果用户已经登录，则隐藏邮件和用户名输入框
-        if user.is_authenticated and not user.is_anonymous and user.email and user.username:
-            comment_form.fields.update({
-                'email': forms.CharField(widget=forms.HiddenInput()),
-                'name': forms.CharField(widget=forms.HiddenInput()),
-            })
-            comment_form.fields["email"].initial = user.email
-            comment_form.fields["name"].initial = user.username
-
-        article_comments = self.object.comment_list()
-
-        kwargs['form'] = comment_form
-        kwargs['article_comments'] = article_comments
-        kwargs['comment_count'] = len(
-            article_comments) if article_comments else 0
-
         kwargs['next_article'] = self.object.next_article
         kwargs['prev_article'] = self.object.prev_article
 
         return super(ArticleDetailView, self).get_context_data(**kwargs)
 
 
+class AboutView(TemplateView):
+    template_name = 'share_layout/about.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['article'] = About.objects.get()
+        return context
+
+
+class PageView(DetailView):
+    template_name = 'share_layout/about.html'
+    model = Page
+
+    def get_object(self, queryset=None):
+        id = self.kwargs["page_id"]
+        obj = Page.objects.filter(id=id)[0]
+        self.object = obj
+        return obj
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["article"] = self.object
+        return context
+    
+
 class CategoryDetailView(ArticleListView):
     '''
     分类目录列表
     '''
-    page_type = "分类目录归档"
+    page_type = "分類目錄"
 
     def get_queryset_data(self):
         slug = self.kwargs['category_name']
@@ -263,6 +272,7 @@ class LinkListView(ListView):
 
     def get_queryset(self):
         return Links.objects.filter(is_enable=True)
+
 
 
 @csrf_exempt
