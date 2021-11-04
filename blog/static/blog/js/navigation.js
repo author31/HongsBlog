@@ -42,7 +42,6 @@
 	} );
 
 	table = document.getElementsByTagName('table')
-	console.log(table)
 	table[0].className +=' table';
 
 

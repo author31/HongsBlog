@@ -33,18 +33,6 @@
             </ul>
         </aside>
     {% endif %}
-    {% if sidabar_links %}
-        <aside id="linkcat-0" class="widget widget_links"><h3 class="widget-title">书签</h3>
-            <ul class='xoxo blogroll'>
-                {% for l in sidabar_links %}
-                    <li>
-                        <a href="{{ l.link }}" target="_blank" title="{{ l.name }}">{{ l.name }}</a>
-                    </li>
-                {% endfor %}
-
-            </ul>
-        </aside>
-    {% endif %}
 
     <aside id="meta-2" class="widget widget_meta"><h3 class="widget-title">功能</h3>
         <ul>

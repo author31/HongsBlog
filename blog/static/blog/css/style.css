@@ -158,7 +158,7 @@ img {
 .widget-title,
 .entry-content th,
 .comment-content th {
-    font-size: 11px;
+    font-size: 13px;
     font-size: 0.785714286rem;
     line-height: 2.181818182;
     font-weight: bold;
@@ -1036,9 +1036,8 @@ img.aligncenter,
 .entry-content table,
 .comment-content table {
     border-bottom: 1px solid #ededed;
-    color: #757575;
-    font-size: 12px;
-    font-size: 0.857142857rem;
+    color: #000000;
+    font-size: 17px;
     line-height: 2;
     margin: 0 0 24px;
     margin: 0 0 1.714285714rem;
@@ -1047,7 +1046,7 @@ img.aligncenter,
 
 .entry-content table caption,
 .comment-content table caption {
-    font-size: 16px;
+    font-size: 18px;
     font-size: 1.142857143rem;
     margin: 24px 0;
     margin: 1.714285714rem 0;
@@ -1055,7 +1054,7 @@ img.aligncenter,
 
 .entry-content td,
 .comment-content td {
-    border-top: 1px solid #ededed;
+    border-top: 2px solid #ededed;
     padding: 6px 10px 6px 0;
 }
 
@@ -1935,7 +1934,7 @@ img#wpstats {
     .comment-content img,
     .author-avatar img,
     img.wp-post-image {
-        border-radius: 0;
+        border-radius: 1;
         box-shadow: none;
     }
 

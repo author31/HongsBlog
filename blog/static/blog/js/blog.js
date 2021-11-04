@@ -69,3 +69,16 @@ $(document).on('webkitAnimationEnd', function() {
 		rocket.removeClass('move');
 	}, 400);
 });
+
+$(function() {
+	current_path = window.location.href.split("/").at(-1)
+	if(current_path == '1.html'){
+		entry_content = document.getElementsByClassName('entry-content')[0]
+		entry_content.className += ' bg-light border p-3'
+
+		h3 = document.getElementsByTagName('h3')[0]
+		h3.className += ' font-weight-bold'
+
+		p 
+	}
+})

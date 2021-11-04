@@ -326,6 +326,7 @@ class Page(BaseModel):
         null=True,
         on_delete=models.CASCADE)
     body = MDTextField('內容', null=True, blank=True)
+
     class Meta:
         verbose_name = "資訊頁面"
         verbose_name_plural = verbose_name  
@@ -337,3 +338,7 @@ class Page(BaseModel):
     def get_absolute_url(self):
         return reverse(
             'blog:info_page', kwargs={'page_id': self.id})
+
+    def get_admin_url(self):
+        info = (self._meta.app_label, self._meta.model_name)
+        return reverse('admin:%s_%s_change' % info, args=(self.pk,))

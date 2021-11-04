@@ -17,6 +17,7 @@ class VideoMaterial(models.Model):
     description = models.TextField('描述', null=True, blank=True)
     deadline = models.DateTimeField('播放期限', null=False, blank=False)
     video_file = models.FileField('影片', null=False, blank=False, upload_to=get_full_path('videos-material/'))
+    
     def is_deadline(self):
         return datetime.now() > self.deadline
 
