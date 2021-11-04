@@ -11,19 +11,23 @@ from django.views.generic.edit import DeleteView, FormMixin, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from assignment.form import AssignmentForm
-
 from assignment.models import Assignment, StudentAssignment
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 base_dir = getattr(settings, 'BASE_DIR', 'None')
 
-class AssignmentListView(ListView):
+class AssignmentListView(LoginRequiredMixin, ListView):
+    login_url = '/login'
+    redirect_field_name = 'assignment'
     template_name = 'assignment/assignment_list.html'
     model = Assignment
     context_object_name = 'assignment'
 
 
-class AssignmentDetailView(DetailView, FormMixin):
+class AssignmentDetailView(LoginRequiredMixin, DetailView, FormMixin):
+    login_url = '/login'
+    redirect_field_name = 'assignment'
     template_name = 'assignment/assignment_detail.html'
     model = Assignment
     form_class = AssignmentForm
@@ -65,7 +69,9 @@ class AssignmentDetailView(DetailView, FormMixin):
             return redirect("/assignment")
 
 
-class AssignmentUpload(base.TemplateView, FormMixin):
+class AssignmentUpload(LoginRequiredMixin, base.TemplateView, FormMixin):
+    login_url = '/login'
+    redirect_field_name = 'assignment'
     template_name = 'assignment/assignment_upload.html'
     model = Assignment
     form_class = AssignmentForm
