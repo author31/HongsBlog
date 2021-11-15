@@ -1,0 +1,24 @@
+{%extends 'share_layout/base.html'%}
+
+{% block content%}
+        <table class="table">
+            <tr>
+                <th>課程名稱</th>
+                <th>課程結束時間</th>
+            </tr>
+            {% for as in course %}
+            <tr>
+                <td>
+                    <a href="{{ as.get_absolute_url }}">{{as.name}}</a>
+                </td>
+                <td>
+                    {{as.deadline}}                    
+                </td>
+            </tr>
+                
+            {% endfor %}
+        </table>
+       
+    
+{% endblock %}
+
