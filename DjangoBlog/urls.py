@@ -54,6 +54,7 @@ urlpatterns = [
     url(r'', include('owntracks.urls', namespace='owntracks')),
     url(r'^assignment/', include('assignment.urls'), name='assignment'),
     url(r'^videos/', include('videos.urls'), name='videos'),
+    url(r'^course/', include('course.urls'), name='course'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

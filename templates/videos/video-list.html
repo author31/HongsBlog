@@ -6,10 +6,10 @@
                 <th>標題</th>
                 <th>期限</th>
             </tr>
-            {% for vid in videos %}
+            {% for vid in course %}
             <tr>
                 <td>
-                    <a href="{{ vid.get_absolute_url }}">{{vid.title}}</a>
+                    <a href="{% url 'videos:video-list' %}">{{vid.name}}</a>
                 </td>
                 <td>
                     {{vid.deadline}}                    

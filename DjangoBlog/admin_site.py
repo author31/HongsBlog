@@ -32,6 +32,8 @@ from photologue.models import Gallery, Photo
 from photologue.admin import PhotoAdmin, GalleryAdmin
 from videos.admin import VideoAdmin
 from videos.models import VideoMaterial
+from course.admin import CourseAdmin
+from course.models import Course
 
 class DjangoBlogAdminSite(AdminSite):
     site_header = 'DjangoBlog administration'
@@ -69,6 +71,7 @@ admin_site.register(BlogUser, BlogUserAdmin)
 admin_site.register(Assignment, AssignmentAdmin)
 admin_site.register(StudentAssignment, StudentAdmin)
 admin_site.register(VideoMaterial, VideoAdmin)
+admin_site.register(Course, CourseAdmin)
 
 admin_site.register(OAuthUser, OAuthUserAdmin)
 admin_site.register(OAuthConfig, OAuthConfigAdmin)

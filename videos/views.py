@@ -2,6 +2,7 @@ from django.db.models import base
 from django.shortcuts import redirect, render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from course.models import Course
 from videos.models import VideoMaterial
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -11,6 +12,10 @@ class VideoListView(LoginRequiredMixin, ListView):
     template_name = 'videos/video-list.html'
     context_object_name = 'videos'
     model = VideoMaterial
+
+    def get_context_data(self, **kwargs):
+        kwargs["course"] = Course.objects.all()
+        return super().get_context_data(**kwargs)
 
 
 class VideoDetailView(LoginRequiredMixin, DetailView):
@@ -25,3 +30,4 @@ class VideoDetailView(LoginRequiredMixin, DetailView):
         if vid.is_deadline():
             return redirect("/")
         return super().get(request, *args, **kwarg)
+    

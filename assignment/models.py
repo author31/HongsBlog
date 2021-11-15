@@ -10,6 +10,7 @@ import os
 from functools import partial 
 from datetime import datetime
 
+
 def _update_filename(instance, filename, path):
     path = path
     return os.path.join(path, filename)
@@ -21,8 +22,7 @@ class Assignment(models.Model):
     name = models.CharField("作業名稱", max_length=100, null=False, blank=False)
     description = models.TextField("描述",null=True)
     deadline = models.DateTimeField('期限', blank=False, null=False, default=now)
-    
-
+    course = models.ForeignKey('course.Course', on_delete=models.CASCADE, related_name='course', null=True)
     def __str__(self):
         return self.name
     

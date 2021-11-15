@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'sortedm2m',
     'assignment',
     'videos',
+    'course'
 ]
 
 MIDDLEWARE = [

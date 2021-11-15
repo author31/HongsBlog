@@ -18,7 +18,11 @@ class AssignmentAdmin(admin.ModelAdmin):
     
     view_student_links.short_description = "已繳交數量"
     
-
+    def get_model_perms(self, request):
+        """
+        Return empty perms dict thus hiding the model from admin index.
+        """
+        return {}
 
 class StudentAdmin(admin.ModelAdmin):
     exclude = ('assignment', )

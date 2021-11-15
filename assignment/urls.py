@@ -7,9 +7,9 @@ from .views import *
 app_name = 'assignment'
 
 urlpatterns = [
-    path(r"", 
-        AssignmentListView.as_view(),
-        name='assignment-list'),
+    # path(r"", 
+    #     AssignmentListView.as_view(),
+    #     name='assignment-list'),
     path(r"<int:pk>",
         AssignmentDetailView.as_view(),
         name='assignment-detail'
